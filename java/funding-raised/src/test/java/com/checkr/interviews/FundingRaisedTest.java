@@ -1,4 +1,4 @@
-package com.acme.interviews;
+package com.checkr.interviews;
 import java.util.*;
 import java.io.IOException;
 
@@ -35,7 +35,7 @@ public class FundingRaisedTest
      */
     public void testWhereGivenCompany() {
         try {
-            Map<String, String> options = new HashMap<String, String> ();
+            Map<String, String> options = new HashMap<>();
             options.put("company_name", "Facebook");
             assertEquals(FundingRaised.where(options).size(), 7);
         } catch(IOException e) {
@@ -46,7 +46,7 @@ public class FundingRaisedTest
 
     public void testWhereGivenCity() {
         try {
-            Map<String, String> options = new HashMap<String, String> ();
+            Map<String, String> options = new HashMap<>();
             options.put("city", "Tempe");
             assertEquals(FundingRaised.where(options).size(), 3);
         } catch(IOException e) {
@@ -57,7 +57,7 @@ public class FundingRaisedTest
 
     public void testWhereGivenState() {
         try {
-            Map<String, String> options = new HashMap<String, String> ();
+            Map<String, String> options = new HashMap<>();
             options.put("state", "CA");
             assertEquals(FundingRaised.where(options).size(), 873);
         } catch(IOException e) {
@@ -68,7 +68,7 @@ public class FundingRaisedTest
 
     public void testWhereGivenRound() {
         try {
-            Map<String, String> options = new HashMap<String, String> ();
+            Map<String, String> options = new HashMap<>();
             options.put("round", "a");
             assertEquals(FundingRaised.where(options).size(), 582);
         } catch(IOException e) {
@@ -79,7 +79,7 @@ public class FundingRaisedTest
 
     public void testMultipleOptions() {
         try {
-            Map<String, String> options = new HashMap<String, String> ();
+            Map<String, String> options = new HashMap<>();
             options.put("round", "a");
             options.put("company_name", "Facebook");
             assertEquals(FundingRaised.where(options).size(), 1);
@@ -91,7 +91,7 @@ public class FundingRaisedTest
 
     public void testWhereNotExists() {
         try {
-            Map<String, String> options = new HashMap<String, String> ();
+            Map<String, String> options = new HashMap<>();
             options.put("company_name", "NotFacebook");
             assertEquals(FundingRaised.where(options).size(), 0);
         } catch(IOException e) {
@@ -102,7 +102,7 @@ public class FundingRaisedTest
 
     public void testWhereCorrectKeys() {
         try {
-            Map<String, String> options = new HashMap<String, String> ();
+            Map<String, String> options = new HashMap<>();
             options.put("company_name", "Facebook");
             Map<String, String> row = FundingRaised.where(options).get(0);
 
@@ -123,7 +123,7 @@ public class FundingRaisedTest
 
     public void testFindByGivenCompanyName() {
         try {
-            Map<String, String> options = new HashMap<String, String> ();
+            Map<String, String> options = new HashMap<>();
             options.put("company_name", "Facebook");
             Map<String, String> row = FundingRaised.findBy(options);
 
@@ -136,10 +136,7 @@ public class FundingRaisedTest
             assertEquals(row.get("funded_date"), "1-Sep-04");
             assertEquals(row.get("raised_amount"), "500000");
             assertEquals(row.get("round"), "angel");
-        } catch(IOException e) {
-            System.out.print(e.getMessage());
-            System.out.print("error");
-        } catch(NoSuchEntryException e) {
+        } catch(IOException | NoSuchEntryException e) {
             System.out.print(e.getMessage());
             System.out.print("error");
         }
@@ -147,7 +144,7 @@ public class FundingRaisedTest
 
     public void testFindByGivenState() {
         try {
-            Map<String, String> options = new HashMap<String, String> ();
+            Map<String, String> options = new HashMap<>();
             options.put("state", "CA");
             Map<String, String> row = FundingRaised.findBy(options);
 
@@ -160,10 +157,7 @@ public class FundingRaisedTest
             assertEquals(row.get("funded_date"), "1-Dec-06");
             assertEquals(row.get("raised_amount"), "8500000");
             assertEquals(row.get("round"), "b");
-        } catch(IOException e) {
-            System.out.print(e.getMessage());
-            System.out.print("error");
-        } catch(NoSuchEntryException e) {
+        } catch(IOException | NoSuchEntryException e) {
             System.out.print(e.getMessage());
             System.out.print("error");
         }
@@ -171,7 +165,7 @@ public class FundingRaisedTest
 
     public void testFindByMultipleOptions() {
         try {
-            Map<String, String> options = new HashMap<String, String> ();
+            Map<String, String> options = new HashMap<>();
             options.put("company_name", "Facebook");
             options.put("round", "c");
             Map<String, String> row = FundingRaised.findBy(options);
@@ -185,10 +179,7 @@ public class FundingRaisedTest
             assertEquals(row.get("funded_date"), "1-Oct-07");
             assertEquals(row.get("raised_amount"), "300000000");
             assertEquals(row.get("round"), "c");
-        } catch(IOException e) {
-            System.out.print(e.getMessage());
-            System.out.print("error");
-        } catch(NoSuchEntryException e) {
+        } catch(IOException | NoSuchEntryException e) {
             System.out.print(e.getMessage());
             System.out.print("error");
         }
@@ -196,7 +187,7 @@ public class FundingRaisedTest
 
     public void testFindByNotExists() {
         try {
-            Map<String, String> options = new HashMap<String, String> ();
+            Map<String, String> options = new HashMap<>();
             options.put("company_name", "NotFacebook");
             options.put("round", "c");
             Map<String, String> row = FundingRaised.findBy(options);
